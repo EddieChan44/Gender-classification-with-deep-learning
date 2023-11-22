@@ -1,0 +1,53 @@
+#assign weight
+weights = np.array(random.randrange(-1, 1))
+
+
+#bias
+bias = random.randrange(-1, 1)
+
+#active function (sigmoid function)
+def sigmoid_func(x):
+    return 1/(1 + np.exp(-x))
+
+#derivative of sigmoid function
+def der(x):
+    return sigmoid_func(x) * (1 - sigmoid_func(x))
+
+#weight update
+
+learning_rate = 0.5
+
+for epochs in range(1000):
+    input_arr = inputX
+    
+    weighted_sum = np.dot(input_arr, weights) + bias
+    first_output = sigmoid_func(weighted_sum)
+    
+    error = first_output = output
+    total_error = np.square(np.subtract(first_output,output)).mean()
+    
+    first_der = error
+    second_der = der(first_output)
+    derivative = first_der * second_der
+    
+    t_input = inputX.T
+    final_derivative = np.dot(t_input, derivative)
+    
+    #weight update
+    weights = weights + learning_rate * final_derivative
+    
+    #bias update
+    for i in derivative:
+        bias = bias + learning_rate * i
+
+#preditions
+pred = #array of the example image
+
+result = np.dot(pred, weights) + bias
+
+res = sigmoid_func(result)
+
+if res <0.5:
+    print("female")
+    else
+    print("male")
